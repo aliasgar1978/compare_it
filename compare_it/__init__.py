@@ -1,7 +1,7 @@
 __doc__ = '''Compare IT Utility'''
 
-__all__ = [ "Compare_Text", "CiscoHierarchy", "Compare_DataFrame" ]
+__all__ = [ "CompareText", "CompareExcelData" ]
 
-__version__ = "0.0.1"
+__version__ = "0.0.2"
 
-from .diff import Compare_Text, CiscoHierarchy, Compare_DataFrame
+from .diff import CompareText, CompareExcelData, get_string_diffs

@@ -13,8 +13,19 @@ from nettoolkit import JSet, STR, DIC, DifferenceDict
 # ----------------------------------------------------------------------------------
 # Text Config Comparisions
 # ----------------------------------------------------------------------------------
+def get_string_diffs(difference_dict, hn="", difference_dict_labels=None):
+	s = hn + "\n"
+	for key, value in difference_dict.items():
+		if value == '': continue
+		if (difference_dict_labels and 
+			difference_dict_labels.get(key) and 
+			isinstance(difference_dict_labels[key], str)):
+			s += difference_dict_labels[key] + "\n"
+		s += key + "\n"
+		s += DIC.recursive_dic(value, 1)
+	return s
 
-class Compare_Text():
+class CompareText():
 	"""Class to start comparing for two configs
 	readfiles-> convert to lists, -> detects device/config tpyes, ->
 	run appropriate comparetext object.
@@ -233,7 +244,7 @@ class CiscoHierarchy(dict):
 			self.prev_line = line
 
 
-class Compare_DataFrame():
+class CompareExcelData():
 
 	def __init__(self, file1, file2, sheet_name, change_type):
 		self.file1, self.file2, self.sheet_name = file1, file2, sheet_name
@@ -309,8 +320,8 @@ class Compare_DataFrame():
 
 # # f1 = 'c:/users/al202t/desktop/a.log'
 # # f2 = 'c:/users/al202t/desktop/b.log'
-# # # ct = Compare_Text(f1, f2, "- ")
-# # ct = Compare_Text(f2, f1, "+ ")
+# # # ct = CompareText(f1, f2, "- ")
+# # ct = CompareText(f2, f1, "+ ")
 # # d = ct.CTObj.diff
 # # pprint(d)
 
