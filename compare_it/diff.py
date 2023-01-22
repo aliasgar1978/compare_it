@@ -6,7 +6,7 @@ import pandas as pd
 import os
 
 from abc import ABC, abstractclassmethod
-from nettoolkit import JSet, STR, DIC, DifferenceDict
+from nettoolkit import Juniper, STR, DIC, DifferenceDict
 
 
 
@@ -15,6 +15,7 @@ from nettoolkit import JSet, STR, DIC, DifferenceDict
 # ----------------------------------------------------------------------------------
 def get_string_diffs(difference_dict, hn="", difference_dict_labels=None):
 	s = hn + "\n"
+	if not difference_dict: return s
 	for key, value in difference_dict.items():
 		if value == '': continue
 		if (difference_dict_labels and 
@@ -146,12 +147,8 @@ class Compare_Text_Juniper(Compare_Text_Papa):
 
 	def to_set(self, file):
 		"""Convert files to JSET format if not already /child"""
-		if isinstance(file, list):
-			j = JSet(input_list=file)
-		else:
-			j = JSet(input_file=file)
-		j.to_set
-		return j.objVar
+		j = Juniper(file)
+		return j.convert_to_set(to_file=False)
 
 	def check_diff(self, dst_config, sectLine):
 		"""check line difference in destined config """
@@ -257,8 +254,10 @@ class CompareExcelData():
 		return self._diff
 
 	def get_df(self, idx):
-		self.df1 = pd.read_excel(self.file1, sheet_name=self.sheet_name, index=False).fillna("")
-		self.df2 = pd.read_excel(self.file2, sheet_name=self.sheet_name, index=False).fillna("")
+		self.df1 = pd.read_excel(self.file1, sheet_name=self.sheet_name).fillna("")
+		self.df2 = pd.read_excel(self.file2, sheet_name=self.sheet_name).fillna("")
+		self.df1.reset_index()
+		self.df2.reset_index()
 		# index_col = "FIND" if self.sheet_name == 'var' else "Unnamed: 0"
 		self.df1 = self.df1.set_index(idx)
 		self.df2 = self.df2.set_index(idx)
@@ -274,57 +273,5 @@ class CompareExcelData():
 			self._diff = dd1 - dd2
 		elif self.change_type == "+ ":
 			self._diff = dd2 + dd1
-
-
-
-
-# ##### Excel Compare #######
-
-# f1 = 'c:/users/al202t/desktop/a.xlsx'
-# f2 = 'c:/users/al202t/desktop/b.xlsx'
-# table = 'tables'
-# # f1 = pd.read_excel(f1, sheet_name=table, index=False).fillna("")
-# # f2 = pd.read_excel(f2, sheet_name=table, index=False).fillna("")
-# # f1 = f1.set_index("Unnamed: 0")
-# # f2 = f2.set_index("Unnamed: 0")
-# # td1 = f1.to_dict()
-# # # td2 = f2.to_dict()
-# # dd1 = DifferenceDict(td1)
-# # dd2 = DifferenceDict(td2)
-# # diff1 = dd1 - dd2
-# # diff2 = dd2 + dd1
-# # print(diff1)
-# # print(diff2)
-
-
-# f1 = 'c:/users/al202t/desktop/a.xlsx'
-# f2 = 'c:/users/al202t/desktop/b.xlsx'
-# table = 'var'
-# # f1 = pd.read_excel(f1, sheet_name=table, index=False, usecols=["Find", "Replace"]).fillna("")
-# # f2 = pd.read_excel(f2, sheet_name=table, index=False, usecols=["Find", "Replace"]).fillna("")
-# # f1 = f1.set_index("Find")
-# # f2 = f2.set_index("Find")
-# # td1 = f1.to_dict()
-# # td2 = f2.to_dict()
-# # dd1 = DifferenceDict(td1)
-# # dd2 = DifferenceDict(td2)
-# # diff1 = dd1 - dd2
-# # diff2 = dd2 + dd1
-# # print(diff1)
-# # print(diff2)
-
-
-
-
-# ####### Text compare ######
-
-# # f1 = 'c:/users/al202t/desktop/a.log'
-# # f2 = 'c:/users/al202t/desktop/b.log'
-# # # ct = CompareText(f1, f2, "- ")
-# # ct = CompareText(f2, f1, "+ ")
-# # d = ct.CTObj.diff
-# # pprint(d)
-
-
 
 
