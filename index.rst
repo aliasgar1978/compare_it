@@ -11,9 +11,10 @@ Welcome to compare-it documentation!
    Insall Instructions <docs/install>
    Version Control <docs/version_control>
 
-   Addressing <docs/u_doc/addressing/userdoc>
+   Text Files Differences <docs/u_doc/text_diff>
+   Excel Files Differences <docs/u_doc/xl_diff>
 
-   API Documentation <docs/tech_doc>
+   API Documentation <docs/t_doc/diff>
 
 
 
