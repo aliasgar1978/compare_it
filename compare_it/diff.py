@@ -6,7 +6,8 @@ import pandas as pd
 import os
 
 from abc import ABC, abstractclassmethod
-from nettoolkit import Juniper, STR, DIC, DifferenceDict
+from nettoolkit.nettoolkit_common import STR, DIC, DifferenceDict
+from nettoolkit.j2config import Juniper
 
 
 

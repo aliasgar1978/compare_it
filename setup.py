@@ -5,7 +5,7 @@ with open("README.md", "r") as fh:
 
 setuptools.setup(
     name="compare_it",
-    version="0.0.4",
+    version="0.0.5",
     author="ALIASGAR - ALI",
     author_email="aholo2000@gmail.com",
     description="comparision of two text configurations files or two excel facts files ",
@@ -18,6 +18,9 @@ setuptools.setup(
         "License :: OSI Approved :: MIT License",
         "Operating System :: OS Independent",
     ],
-    python_requires='>=3.7',
+    python_requires='>=3.9',
+    install_requires=['pandas', 'nettoolkit',
+        'compare-it',
+    ]
 )
 
