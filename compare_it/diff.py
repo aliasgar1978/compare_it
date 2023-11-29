@@ -6,25 +6,9 @@ import pandas as pd
 import os
 
 from abc import ABC, abstractclassmethod
-try:
-	from nettoolkit.nettoolkit_common import STR, DIC, DifferenceDict
-	from nettoolkit.j2config import Juniper
-except:
-	## backword compatibilty added below -- will be deprecated soon. 
-	try:
-		from nettoolkit import STR, DIC, DifferenceDict
-	except:
-		try:
-			from nettoolkit_common import STR, DIC, DifferenceDict
-		except:
-			raise Exception("Required package not found, please install - nettoolkit")
-	try:
-		from nettoolkit import Juniper
-	except:
-		try:
-			from pyJuniper import Juniper
-		except:
-			raise Exception("Required package not found, please install - nettoolkit")
+from nettoolkit.nettoolkit_common import STR, DIC, DifferenceDict
+from nettoolkit.pyJuniper import Juniper
+
 
 
 # ----------------------------------------------------------------------------------

@@ -1,6 +1,6 @@
 __doc__ = '''Compare IT Utility'''
 
-__all__ = [ "CompareText", "CompareExcelData" ]
+__all__ = [ "CompareText", "CompareExcelData", "get_string_diffs"]
 
 __version__ = "0.0.6"
 
