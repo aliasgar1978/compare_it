@@ -23,7 +23,12 @@ Version Control
    * - 0.0.5
      - Nov 23, 2023
      - added support for new latest nettookit package
+   * - 0.0.6
+     - Nov 23, 2023
+     - bug fix for juniper delete statement
 
+
+Versions > 0.0.6 are incorporated with Nettoolkit
 
 -----
 
